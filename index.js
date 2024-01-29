@@ -104,6 +104,12 @@ async function run() {
       }
     });
 
+    app.get("/payment/:email", async (req, res) => {
+      const email = req.query.email;
+      const result = await paymentCollection.find(query).toArray();
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
